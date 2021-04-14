@@ -1,6 +1,8 @@
+"use strict";
+
 // define variables
 const form = document.querySelector("#task-form");
-const taskList = document.querySelector(".collection");
+const taskList = document.querySelector(".collection-tasks");
 const clearBtn = document.querySelector(".clear-tasks");
 const searchTasks = document.querySelector("#filter");
 const taskInput = document.querySelector("#task");
@@ -8,7 +10,7 @@ const taskInput = document.querySelector("#task");
 // Load all event listeners
 loadEventListeners();
 
-// Load all event listeners
+// Function Load all event listeners
 function loadEventListeners() {
   // Add task event
   form.addEventListener("submit", addTask);
@@ -26,20 +28,26 @@ function loadEventListeners() {
 // Add Task
 function addTask(e) {
   if (taskInput.value === "") {
-    alert("First add a task !");
+    alert("First you have to add a task !");
   } else {
     // Create li element
     const li = document.createElement("li");
+
     // Add class
-    li.className = "collection-item";
+    li.className = "items";
+
     // Create text node and append to li
     li.appendChild(document.createTextNode(taskInput.value));
+
     // Create new link element
     const link = document.createElement("a");
+
     // Add class to 'i'
     link.className = "delete-item secondary-content";
+
     // Add icon html
     link.innerHTML = '<i class="far fa-trash-alt"></i>';
+
     // Append the link to li
     li.appendChild(link);
 
@@ -52,8 +60,8 @@ function addTask(e) {
   e.preventDefault();
 }
 
-// Remove task
-//https://developer.mozilla.org/fr/docs/Web/API/Node/parentElement
+// Remove the task FUNCTION
+
 function removeTask(e) {
   if (e.target.parentElement.classList.contains("delete-item")) {
     if (confirm("Sure about this ?")) {
@@ -62,18 +70,18 @@ function removeTask(e) {
   }
 }
 
-// Clear all function
+// Clear all FUNCTION
 
 function clearTasks() {
   taskList.innerHTML = "";
 }
 
-// Search for task
+// Search for task FUNCTION
 
 function searchTask(e) {
   let typeText = e.target.value.toLowerCase();
 
-  let tasks = document.querySelectorAll(".collection-item");
+  let tasks = document.querySelectorAll(".items");
 
   tasks.forEach(function (task) {
     // take the first child of "tasks"
